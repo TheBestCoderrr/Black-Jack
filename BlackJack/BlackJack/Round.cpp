@@ -1,4 +1,6 @@
 #include "Round.h"
+#define MIN_BANK 25
+#define MAX_BANK 500
 
 void Round::AddPlayer(Player p)
 {
@@ -79,7 +81,7 @@ void Round::start()
 	printPlayers();
 }
 
-void Round::CheckBalance()
+void Round::CheckBalance() 
 {
 	for (int i = 0; i < players.size(); i++)
 		if(players[i].getBalance() < 25) players.erase(players.begin() + i);
@@ -92,7 +94,7 @@ void Round::AddBank()
 		while (true) {
 			cout << players[i].getName() << " | Enter bank: ";
 			cin >> bank;
-			if (bank >= 25 && bank <= 500 && bank <= players[i].getBalance()) break;
+			if (bank >= MIN_BANK && bank <= MAX_BANK && bank <= players[i].getBalance()) break;
 			else cout << "Incorrect value!" << endl;
 		}
 		players[i].setBank(bank);

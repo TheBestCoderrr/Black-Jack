@@ -15,6 +15,7 @@ public:
 	void Split(Deck& deck, const Dealer dealer);
 	void Double(Deck& deck);
 	void Surrender();
+
 	void CheckHand() const;
 	int choice();
 	int getSum() const;

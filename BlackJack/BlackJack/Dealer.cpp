@@ -8,8 +8,8 @@ vector<Card> Dealer::getHand() const
 void Dealer::Hit(Deck& deck)
 {
 	if (deck.is_empty()) deck.init(6);
-	if (deck.getCard().getRank() == 14 && getSum() + deck.getCard().getValue() > 21) deck.setCard(1);
-	hand.push_back(deck.getCard());
+	if (deck.getCard().getValue().getRank() == 14 && getSum() + deck.getCard().getValue().getValue() > 21) deck.setCard(1);
+	hand.push_back(deck.getCard().getValue());
 }
 
 void Dealer::CheckHand() const

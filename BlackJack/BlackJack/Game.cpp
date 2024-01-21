@@ -1,12 +1,13 @@
-#include <iostream>
-#include "Round.h"
-using namespace std;
+#include "Game.h"
 
-void Game() {
+void Game::start()
+{
 	vector<Player> players;
-	int count_players;
-	cout << "Enter count players: ";
-	cin >> count_players;
+	int count_players = 7;
+	while (count_players > 6 || count_players < 1) {
+		cout << "Enter count players: ";
+		cin >> count_players;
+	}
 	for (int i = 0; i < count_players; i++) {
 		string name;
 		cout << "Enter name: ";
@@ -32,31 +33,27 @@ void Game() {
 				count_players--;
 			}
 
-		cout << "Who want exit enter name or 0\n";
-		string name;
-		bool succes = 0;
-		while (!succes) {
+		cout << "Who want exit enter name or 0 if none\n";
+		string name = "";
+		while (name != "0" && !players.empty()) {
 			cout << "Enter name or 0: ";
 			cin >> name;
-			if (name == "0") {
-				succes = 1;
-				continue;
-			}
 			for (int i = 0; i < players.size(); i++) {
 				if (players[i].getName() == name) {
 					players.erase(players.begin() + i);
-					succes = 1;
 					count_players--;
 					break;
 				}
 			}
 		}
 	}
-	cout << "+End+" << endl;
+	cout << "---End---" << endl;
 }
 
-int main() {
+void Game::menu()
+{
 	cout << "Black Jack" << endl;
+	cout << "0 - Exit\n1 - Start game\n";
 	srand(time(0));
 	int choice = -1;
 	while (choice != 0) {
@@ -67,7 +64,7 @@ int main() {
 			cout << "Exit success!" << endl;
 			break;
 		case 1:
-			Game();
+			start();
 			break;
 		default:
 			cout << "Invalid choice!" << endl;

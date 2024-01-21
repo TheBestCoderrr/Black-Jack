@@ -10,7 +10,7 @@ Deck::~Deck()
 
 void Deck::push(int rank, int value)
 {
-    Card* temp = new Card(rank, value, head);
+    Node<Card>* temp = new Node<Card>(Card(rank, value), head);
     if (head) head->setPrev(temp);
     else tail = temp;
     head = temp;
@@ -30,7 +30,7 @@ void Deck::pop()
         tail = nullptr;
         return;
     }
-    Card* temp = head;
+    Node<Card>* temp = head;
     head->setPrev(nullptr);
     head = head->getNext();
     delete temp;
@@ -62,10 +62,10 @@ void Deck::init(int count_deck)
     }
 }
 
-Card* Deck::at(int index)
+Node<Card>* Deck::at(int index)
 {
     int n = 0;
-    Card* cur = head;
+    Node<Card>* cur = head;
     while (cur) {
         if (n == index) break;
         cur = cur->getNext();
@@ -74,10 +74,10 @@ Card* Deck::at(int index)
     return cur;
 }
 
-Card* Deck::operator[](int index)
+Node<Card>* Deck::operator[](int index)
 {
     int n = 0;
-    Card* cur = head;
+    Node<Card>* cur = head;
     while (cur) {
         if (n == index) break;
         cur = cur->getNext();
@@ -86,19 +86,19 @@ Card* Deck::operator[](int index)
     return cur;
 }
 
-Card Deck::front() const
+Node<Card> Deck::front() const
 {
     return *head;
 }
 
-Card Deck::getCard()
+Node<Card> Deck::getCard()
 {
-    Card card = front();
+    Node<Card> card = front();
     pop();
     return card;
 }
 
 void Deck::setCard(int value)
 {
-    head->setValue(value);
+    head->setValue(Card(head->getValue().getRank(), value));
 }

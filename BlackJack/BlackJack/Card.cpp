@@ -1,6 +1,6 @@
 #include "Card.h"
 
-Card::Card(int rank, int value, Card* next, Card* prev) : rank(rank), value(value), next(next), prev(prev) {}
+Card::Card(int rank, int value) : rank(rank), value(value) {}
 
 int Card::getRank() const
 {
@@ -15,26 +15,6 @@ void Card::setValue(int v)
 int Card::getValue() const
 {
 	return value;
-}
-
-void Card::setNext(Card* n)
-{
-	next = n;
-}
-
-Card* Card::getNext() const
-{
-	return next;
-}
-
-void Card::setPrev(Card* p)
-{
-	prev = p;
-}
-
-Card* Card::getPrev() const
-{
-	return prev;
 }
 
 void Card::printRank() const
